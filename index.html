@@ -1,80 +1,147 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>djmitche/libzcloud @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #4fbb49;
-		  font-family: "helvetica"; 
-  		color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #b044b6; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #b044b6; }
-    h3 { text-align: center; color: #b044b6; }
-    a { color: #b044b6; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
-</head>
-
-<body>
-  <a href="http://github.com/djmitche/libzcloud"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-  
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/djmitche/libzcloud/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/djmitche/libzcloud/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-      
-    <h1><a href="http://github.com/djmitche/libzcloud">libzcloud</a> 
-      <span class="small">by <a href="http://github.com/djmitche">djmitche</a></span></h1>
-
-    <div class="description">
-      An abstraction for cloud storage services
-    </div>
-
-    <h2>Authors</h2>
-<p>Nikolas Coukouma (atrus@zmanda.com)<br/>Dustin J. Mitchell (dustin@zmanda.com)<br/>Ian Turner (ian@zmanda.com)<br/>Jean-Louis Martineau (martineau@zmanda.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Dustin J. Mitchell (dustin@zmanda.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/djmitche/libzcloud/zipball/master">zip</a> or
-      <a href="http://github.com/djmitche/libzcloud/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/djmitche/libzcloud</pre>
-    </p>
-      
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/djmitche/libzcloud">djmitche/libzcloud</a>
-    </div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-  </div>
-
+    <title>libzcloud &mdash; libzcloud v1.0alpha documentation</title>
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0alpha',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="libzcloud v1.0alpha documentation" href="" />
+    <link rel="next" title="Introduction" href="introduction.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             accesskey="N">next</a> |</li>
+        <li><a href="">libzcloud v1.0alpha documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
   
-</body>
+  <div class="section" id="libzcloud">
+<h1>libzcloud<a class="headerlink" href="#libzcloud" title="Permalink to this headline">¶</a></h1>
+<p>Libzcloud is an abstraction for cloud storage services.  It provides an easy,
+consistent interface to a variety of cloud services in the form of a system
+library (<tt class="docutils literal"><span class="pre">libzcloud</span></tt>) and a command-line utility (<strong>zcloud</strong>).</p>
+<p>Note that this documentation is still essentially a series of notes we&#8217;ve added
+as we&#8217;ve built parts of the library.  It needs serious thought put toward
+proper organization and connection.</p>
+<p>Table of Contents:</p>
+<ul>
+<li class="toctree-l1"><a class="reference" href="introduction.html">Introduction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference" href="using_zcloud.html">Using zcloud</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference" href="using_libzcloud.html">Using libzcloud</a><ul>
+<li class="toctree-l2"><a class="reference" href="using_libzcloud/object_model.html">Model</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference" href="writing_plugins.html">Writing libzcloud Plugins</a><ul>
+<li class="toctree-l2"><a class="reference" href="writing_plugins/xml_definition.html">Plugin XML Definitions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference" href="hacking_libzcloud.html">Hacking libzcloud</a><ul>
+<li class="toctree-l2"><a class="reference" href="hacking_libzcloud/headers.html">Headers</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference" href="plugins.html">Plugins</a></li>
+</ul>
+</div>
+<div class="section" id="to-do">
+<h1>To Do<a class="headerlink" href="#to-do" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Descriptions of each class from the user&#8217;s perspective</li>
+<li>&#8220;How to write a plugin&#8221;</li>
+<li>&#8220;Using libzcloud&#8221; example</li>
+<li>Reference zcloud(1) for zcloud instructions</li>
+<li>&#8220;Using zcloud&#8221; example</li>
+<li>Developers&#8217; doc: testing, coding style, etc.</li>
+</ul>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference" href="">libzcloud</a><ul>
+</ul>
+</li>
+<li><a class="reference" href="#to-do">To Do</a></li>
+<li><a class="reference" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            <h4>Next topic</h4>
+            <p class="topless"><a href="introduction.html" title="next chapter">Introduction</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sources/index.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             accesskey="N">next</a> |</li>
+        <li><a href="">libzcloud v1.0alpha documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009-2009, Zmanda, Inc. (www.zmanda.com).
+      Last updated on Jun 04, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.2.
+    </div>
+  </body>
 </html>
