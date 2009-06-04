@@ -3,11 +3,11 @@
 # Version: 1.0alpha
 Store.upload method using_libzcloud/object_model.html
 ListConsumer class using_libzcloud/object_model.html
-Store.exists method using_libzcloud/object_model.html
+Store.create method using_libzcloud/object_model.html
 UploadProducer.calculate_md5 method using_libzcloud/object_model.html
 UploadProducer.get_size method using_libzcloud/object_model.html
 Store.list method using_libzcloud/object_model.html
-Store.create method using_libzcloud/object_model.html
+Store.exists method using_libzcloud/object_model.html
 DownloadConsumer.write method using_libzcloud/object_model.html
 UploadProducer class using_libzcloud/object_model.html
 DownloadConsumer class using_libzcloud/object_model.html
