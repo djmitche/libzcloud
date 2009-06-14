@@ -47,7 +47,7 @@
   
   <div class="section" id="store-subclass">
 <h1>Store Subclass<a class="headerlink" href="#store-subclass" title="Permalink to this headline">¶</a></h1>
-<p>Each plugin is linked to a particular subclass of <a title="ZCloudStore" class="reference" href="../using_libzcloud/object_model.html#ZCloudStore"><tt class="xref docutils literal"><span class="pre">ZCloudStore</span></tt></a>,
+<p>Each plugin is linked to a particular subclass of <a title="ZCloudStore" class="reference" href="../api/store.html#ZCloudStore"><tt class="xref docutils literal"><span class="pre">ZCloudStore</span></tt></a>,
 indicated by the type registered during <a class="reference" href="initialization.html#module-initialization"><em>Module Initialization</em></a>.</p>
 <div class="section" id="store-initialization">
 <h2>Store Initialization<a class="headerlink" href="#store-initialization" title="Permalink to this headline">¶</a></h2>
@@ -61,7 +61,7 @@ and <em>suffix</em></li>
 has not already been loaded.</li>
 <li>Instantiate the type registered for the prefix, using <tt class="docutils literal"><span class="pre">g_object_new</span></tt>,
 but without passing any GLib parameters.</li>
-<li>Invoke the <a title="ZCloudStore.setup" class="reference" href="../using_libzcloud/object_model.html#ZCloudStore.setup"><tt class="xref docutils literal"><span class="pre">setup()</span></tt></a> method with a normalized set of
+<li>Invoke the <a title="ZCloudStore.setup" class="reference" href="../api/store.html#ZCloudStore.setup"><tt class="xref docutils literal"><span class="pre">setup()</span></tt></a> method with a normalized set of
 parameters.</li>
 </ul>
 <p>Parameters are passed to setup in an array of <tt class="docutils literal"><span class="pre">GParameter</span></tt> structs,
@@ -124,7 +124,7 @@ duplicates, but they are not given in any particular order.  The
     </div>
     <div class="footer">
       &copy; Copyright 2009-2009, Zmanda, Inc. (www.zmanda.com).
-      Last updated on Jun 11, 2009.
+      Last updated on Jun 14, 2009.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.2.
     </div>
   </body>

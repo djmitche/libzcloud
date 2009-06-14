@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Module Initialization &mdash; libzcloud v1.0alpha documentation</title>
+    <title>Introduction &mdash; libzcloud v1.0alpha documentation</title>
     <link rel="stylesheet" href="../static/default.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -19,8 +19,8 @@
     <script type="text/javascript" src="../static/doctools.js"></script>
     <link rel="top" title="libzcloud v1.0alpha documentation" href="../index.html" />
     <link rel="up" title="Writing libzcloud Plugins" href="../writing_plugins.html" />
-    <link rel="next" title="Store Subclass" href="store_subclass.html" />
-    <link rel="prev" title="Plugin XML Definition" href="xml_definition.html" /> 
+    <link rel="next" title="Plugin Build Process" href="build_process.html" />
+    <link rel="prev" title="Writing libzcloud Plugins" href="../writing_plugins.html" /> 
   </head>
   <body>
     <div class="related">
@@ -30,10 +30,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="store_subclass.html" title="Store Subclass"
+          <a href="build_process.html" title="Plugin Build Process"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="xml_definition.html" title="Plugin XML Definition"
+          <a href="../writing_plugins.html" title="Writing libzcloud Plugins"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">libzcloud v1.0alpha documentation</a> &raquo;</li>
           <li><a href="../writing_plugins.html" accesskey="U">Writing libzcloud Plugins</a> &raquo;</li> 
@@ -45,50 +45,29 @@
           <div class="body">
             
   
-  <div class="section" id="id1">
-<span id="module-initialization"></span><h1>Module Initialization<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>Libzcloud modules are loaded by GLib&#8217;s <em>GModule</em> library, which
-automatically runs <cite>g_module_check_init</cite> on load.  This is the
-appropriate time to register all plugins supplied with the module.  The
-function usually looks something like:</p>
-<div class="highlight-python"><pre>#include "config.h"
-#include "zcloud.h"
-#include &lt;gmodule.h&gt;
-
-const gchar *
-g_module_check_init(GModule *module)
-{
-    return zcloud_register_store_plugin("mycloud",
-                                        "mycloudstore",
-                                        MYCLOUD_TYPE_STORE);
-}</pre>
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<p>When beginning a new plugin, look at the existing libzcloud plugins for
+examples.  In particular, the <em>disk</em> plugin is intended as an example.</p>
+<p>At the moment, there is no libzcloud mailing list, but you are encouraged
+contact the developers directly by email or visit the IRC channel
+<tt class="docutils literal"><span class="pre">#libzcloud</span></tt> on Freenode with any questions.</p>
 </div>
-<p>This function should return <cite>NULL</cite> on success, and an error message on
-failure, which is exactly the semantics of
-<cite>zcloud_register_store_plugin</cite>.</p>
-<dl class="cfunction">
-<dt id="zcloud_register_store_plugin">
-<!--[zcloud_register_store_plugin]-->gchar * <tt class="descname">zcloud_register_store_plugin</tt><big>(</big>const gchar<em> *module_name</em>, const gchar<em> *prefix</em>, GType<em> type</em><big>)</big><a class="headerlink" href="#zcloud_register_store_plugin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register store subclass <em>type</em> as the class to instantiate for
-prefix <em>prefix</em>, defined as part of the module <em>module_name</em>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><em>module_name</em> &#8211; base name of the module being initialized</li>
-<li><em>prefix</em> &#8211; prefix corresponding to this plugin</li>
-<li><em>type</em> &#8211; type of a subclass of <a title="ZCloudStore" class="reference" href="../api/store.html#ZCloudStore"><tt class="xref docutils literal"><span class="pre">ZCloudStore</span></tt></a></li>
-</ul>
-</td>
-</tr>
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><cite>NULL</cite> on success, or an error message on failure</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="local-and-external-plugins">
+<span id="index-8"></span><h2>Local and External Plugins<a class="headerlink" href="#local-and-external-plugins" title="Permalink to this headline">¶</a></h2>
+<p>A <em>local</em> plugin is one which is built alongside libzcloud.  <em>External</em> plugins
+are compiled separately, against an installed copy of libzcloud.  Both
+varieties of plugins are loaded with the same mechanism; the difference is only
+in how they are compiled and installed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Support for external plugins is not yet complete.  Libzcloud will eventually
+provide autoconf macros and other support to make development of external
+plugins very easy.</p>
+</div>
+</div>
 </div>
 
 
@@ -97,13 +76,22 @@ prefix <em>prefix</em>, defined as part of the module <em>module_name</em>.</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference" href="">Introduction</a><ul>
+<li><a class="reference" href="#resources">Resources</a></li>
+<li><a class="reference" href="#local-and-external-plugins">Local and External Plugins</a></li>
+</ul>
+</li>
+</ul>
+
             <h4>Previous topic</h4>
-            <p class="topless"><a href="xml_definition.html" title="previous chapter">Plugin XML Definition</a></p>
+            <p class="topless"><a href="../writing_plugins.html" title="previous chapter">Writing libzcloud Plugins</a></p>
             <h4>Next topic</h4>
-            <p class="topless"><a href="store_subclass.html" title="next chapter">Store Subclass</a></p>
+            <p class="topless"><a href="build_process.html" title="next chapter">Plugin Build Process</a></p>
             <h3>This Page</h3>
             <ul class="this-page-menu">
-              <li><a href="../sources/writing_plugins/initialization.txt">Show Source</a></li>
+              <li><a href="../sources/writing_plugins/introduction.txt">Show Source</a></li>
             </ul>
           <h3>Quick search</h3>
             <form class="search" action="../search.html" method="get">
@@ -122,10 +110,10 @@ prefix <em>prefix</em>, defined as part of the module <em>module_name</em>.</p>
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="store_subclass.html" title="Store Subclass"
+          <a href="build_process.html" title="Plugin Build Process"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="xml_definition.html" title="Plugin XML Definition"
+          <a href="../writing_plugins.html" title="Writing libzcloud Plugins"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">libzcloud v1.0alpha documentation</a> &raquo;</li>
           <li><a href="../writing_plugins.html" accesskey="U">Writing libzcloud Plugins</a> &raquo;</li> 
