@@ -16,6 +16,9 @@
 # GNU Lesser General Public License for more details.
 #  ***** END LICENSE BLOCK *****
 
+# path to libzcloud.m4, if we're built as part of the libzcloud project
+# XXX won't work outside libzcloud
+ACLOCAL_AMFLAGS = -I m4
 
 INCLUDES = -I $(top_srcdir)/lib
 AM_CPPFLAGS = $(GLIB_CFLAGS)
@@ -25,8 +28,6 @@ EXTRA_DIST = $(zcplugin_DATA)
 
 zcplugin_LTLIBRARIES = libdisk.la
 libdisk_la_LDFLAGS = -avoid-version -module
-libdisk_la_LIBADD = \
-    $(top_builddir)/lib/libzcloud.la
 libdisk_la_SOURCES = \
     disk.h \
     init.c \

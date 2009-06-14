@@ -19,18 +19,19 @@
 
 # SYNOPSIS
 #
-#   ZCLOUD_DEFINE_PLUGIN(plugin, install_by_default, help, [if-enabled])
+#   ZCLOUD_LOCAL_PLUGIN(plugin, install_by_default, help)
 #
 # OVERVIEW
 #
-#   * Add an --enable-$plugin-plugin or --disable-$plugin-plugin command
-#   * adds plugins/$plugin/Makefile to AC_CONFIG_FILES
+#   This macro supports building plugins stored in the local source
+#   tree.  It adds --enable-$plugin-plugin or --disable-$plugin-plugin
+#   options.  INSTALL_BY_DEFAULT should be 'yes' or 'no'.  If the plugin
+#   is enabled,
 #
-#   If the plugin is enabled
-#   * execute $if-enabled
+#   * runs configure in 'plugins/$plugin'
 #   * add plugins/$plugin to PLUGIN_SUBDIRS
 #
-AC_DEFUN([ZCLOUD_DEFINE_PLUGIN], [
+AC_DEFUN([ZCLOUD_LOCAL_PLUGIN], [
     AC_ARG_ENABLE([$1],
         AS_HELP_STRING(
             m4_if([$2], [no], [--enable-$1-plugin], [--disable-$1-plugin]),
@@ -38,10 +39,9 @@ AC_DEFUN([ZCLOUD_DEFINE_PLUGIN], [
         [ PLUGIN_$1="$enableval" ],
         [ PLUGIN_$1="$2" ])
 
-    AC_CONFIG_FILES([plugins/$1/Makefile])
+    AC_CONFIG_SUBDIRS([plugins/$1])
 
     if test x"$PLUGIN_$1" = x"yes"; then
-        $4
         PLUGIN_SUBDIRS="$PLUGIN_SUBDIRS plugins/$1"
     fi
 

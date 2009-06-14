@@ -75,8 +75,8 @@ AC_CHECK_FUNCS([bzero regcomp])
 # Set up directories
 ZCLOUD_WITH_ZCPLUGINDIR
 
-# load plugins
-m4_include([plugins/configure.m4])
+# and local plugins
+ZCLOUD_LOCAL_PLUGIN([disk], [no], [demo network-less plugin])
 
 # set up documentation
 ZCLOUD_CHECK_DOCUMENTATION

@@ -1,0 +1,6 @@
+This plugin is distributed as part of libzcloud itself.  Consult the libzcloud
+documentation for more information.
+
+If you are using this plugin as a base to write a new plugin, and your plugin
+will be distributed separately, please write a README that will help users to
+understand what they have downloaded and how to use it.

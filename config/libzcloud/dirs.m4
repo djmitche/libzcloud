@@ -28,21 +28,24 @@
 #
 AC_DEFUN([ZCLOUD_WITH_ZCPLUGINDIR],
 [
-    AC_ARG_WITH(zcplugindir,
-	AS_HELP_STRING([--with-zcplugindir=DIR],
-	    [plugin directory @<:@libdir/libzcloud-plugins@:>@]),
-	[
-	    case "$withval" in
-	    "" | y | ye | yes | n | no)
-		AC_MSG_ERROR([Invalid --with-zcplugindir value])
-	      ;;
-	    *) zcplugindir="$withval"
-	      ;;
-	    esac
-	], [
-	    : ${zcplugindir='${libdir}/libzcloud-plugins'} # (variable will be evaluated below)
-	]
-    )
+    AC_CACHE_VAL([zcloud_cv_zcplugindir], [
+        AC_ARG_WITH(zcplugindir,
+        AS_HELP_STRING([--with-zcplugindir=DIR],
+            [plugin directory @<:@libdir/libzcloud-plugins@:>@]),
+        [
+            case "$withval" in
+            "" | y | ye | yes | n | no)
+            AC_MSG_ERROR([Invalid --with-zcplugindir value])
+              ;;
+            *) zcloud_cv_zcplugindir="$withval"
+              ;;
+            esac
+        ], [
+            zcloud_cv_zcplugindir='${libdir}/libzcloud-plugins'
+        ]
+        )
+    ])
+    zcplugindir="$zcloud_cv_zcplugindir"
 
     AC_SUBST([zcplugindir])
     AC_DEFINE_DIR([ZCPLUGINDIR], [zcplugindir],

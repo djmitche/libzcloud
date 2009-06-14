@@ -17,8 +17,16 @@
 # GNU Lesser General Public License for more details.
 #  ***** END LICENSE BLOCK *****
 
+is_local=false
+if test "$1" = "local"; then
+    is_local=true
+fi
+
 # cd to the directory we're run from
 cd `dirname $0`
+
+# if you change this, please also change it in the root Makefile.am
+includes=""
 
 die() {
     echo x"${@}" | sed 's/^x//'
@@ -30,22 +38,8 @@ rm -f aclocal.m4
 rm -rf autom4te*.cache
 rm -f configure
 
-echo "..listing documentation"
-(
-    cd docs
-    echo 'rst_files ='
-    find . -name '*.rst' | sed -e 's!^./!rst_files += !'
-) > docs/rst-files
-
-echo "..checking plugins' libzcloud.m4"
-for m4file in `find plugins -name libzcloud.m4`; do
-    if ! diff -q config/libzcloud.m4 $m4file > /dev/null; then
-        echo "WARNING: $m4file is different from config/libzcloud.m4"
-    fi
-done
-
-echo "..autoreconf"
-autoreconf --verbose --install --force || die "autoreconf failed"
+echo "..aclocal"
+aclocal $includes || die "aclocal failed"
 
 echo "...aclocal patches"
 # See http://bugzilla.gnome.org/show_bug.cgi?id=418778
@@ -58,3 +52,9 @@ sed -e  \
      's/PKG_PROG_PKG_CONFIG(\[0\.16\])/PKG_PROG_PKG_CONFIG([0.7])/g' \
      < aclocal.m4 > aclocal.m4~
 mv aclocal.m4~ aclocal.m4
+
+echo "..autoconf"
+autoconf || die "autoconf failed"
+
+echo "..automake"
+automake --force --copy --warnings=none || die "automake failed"

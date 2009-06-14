@@ -16,6 +16,18 @@
 # GNU Lesser General Public License for more details.
 #  ***** END LICENSE BLOCK *****
 
+AC_INIT
+AC_CONFIG_SRCDIR([disk.xml])
+AC_CONFIG_AUX_DIR([.])
+AC_CONFIG_MACRO_DIR([m4])
+AM_INIT_AUTOMAKE([libzcloud-disk], [1.0alpha])
 
-ZCLOUD_DEFINE_PLUGIN([disk], [yes], [no-network plugin for testing], [
-])
+AM_PROG_LIBTOOL
+AC_SUBST(LIBTOOL_DEPS)
+
+AC_PROG_CC
+
+ZCLOUD_CONFIGURE_PLUGIN
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
