@@ -18,7 +18,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="libzcloud v1.0alpha documentation" href="index.html" />
-    <link rel="next" title="Using zcloud" href="using_zcloud.html" />
+    <link rel="next" title="Using libzcloud" href="using_libzcloud.html" />
     <link rel="prev" title="libzcloud" href="index.html" /> 
   </head>
   <body>
@@ -29,7 +29,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="using_zcloud.html" title="Using zcloud"
+          <a href="using_libzcloud.html" title="Using libzcloud"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="libzcloud"
@@ -43,35 +43,30 @@
           <div class="body">
             
   
-  <div class="section" id="id1">
-<span id="introduction"></span><h1>Introduction<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>This is an initial draft of the libzcloud interfaces, which aim to provide an
-abstraction for the various cloud storage services.</p>
-<p>The core of libzcloud&#8217;s abstraction is the &#8220;store&#8221;. The methods that the
-store must support are:</p>
-<ul class="simple">
-<li>create</li>
-<li>upload</li>
-<li>download</li>
-<li>delete</li>
-<li>exists</li>
-<li>list</li>
-</ul>
-<p>Most of the operations above take an &#8220;address&#8221; to operate on. Addresses are
-specific to an individual store (e.g bucket name and key for Amazon S3) and
-are represented by a simple string, which parse_address should interpret.</p>
-<p>Address templates (used when listing addresses) are simply a sprintf-style
-pattern (which only accepts strings, &#8220;%s&#8221;, and the escape sequence, &#8220;%%&#8221;).
-They allow programs using libzcloud to specicfy simple patterns and still have
-the store (probably) be able to list everything matching that pattern. Only
-permitting strings in the pattern is only meant to simplify the parsing of the
-pattern by the store; programs using libzcloud might only substitute, say,
-a number.</p>
-<p>Independent of particular stores are the download consumer, upload producer,
-progress listener, and list consumer. They are the concern of programs using libzcloud.</p>
-<p>libzcloud will eventually include some implementations of its abstractions.
-An implementation of an Amazon S3 store is expected along with consumers
-(and producers) that write to (and read from) memory buffers and files.</p>
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Libzcloud is an abstract interface to cloud-based key/value stores.  It
+supports the basic operations: list keys, set a value (upload), get a value
+(download), and delete a value.</p>
+<p>The library provides an object called a &#8220;store,&#8221; with the various operations
+exposed as methods on that object.  The store is specified using a string that
+gives the cloud provider and any other information required to find the data.
+libzcloud will automatically find and load the appropriate plugin for the prefix;
+if you&#8217;re interested in adding support for a cloud storage service, read
+<a class="reference" href="writing_plugins.html#writing-plugins"><em>Writing libzcloud Plugins</em></a>.</p>
+<p>Most of the store operations take a key as an index into the key/value store.
+The key is generally a printable string.  Values are represented as arbitrary
+byte streams.</p>
+<p>Since values are often very large, libzcloud operates on streams rather than
+pre-allocated strings.   Upload operations pull data from a &#8220;producer&#8221;, and
+download operations push data to a &#8220;consumer.&#8221;  The library includes some
+common producer and consumer implementations, but more sophisticated
+applications can easily construct their own implementations.</p>
+<p>Some cloud vendors provide sophisticated key-listing methods to filter the keys
+returned.  Libzcloud abstracts those methods using &#8220;key templates&#8221; which
+contain wildcards and other special characters to indicate which keys are of
+interest.  Store implementations map these templates to the most efficient
+operations available from the cloud vendor.</p>
 </div>
 
 
@@ -83,7 +78,7 @@ An implementation of an Amazon S3 store is expected along with consumers
             <h4>Previous topic</h4>
             <p class="topless"><a href="index.html" title="previous chapter">libzcloud</a></p>
             <h4>Next topic</h4>
-            <p class="topless"><a href="using_zcloud.html" title="next chapter">Using zcloud</a></p>
+            <p class="topless"><a href="using_libzcloud.html" title="next chapter">Using libzcloud</a></p>
             <h3>This Page</h3>
             <ul class="this-page-menu">
               <li><a href="sources/introduction.txt">Show Source</a></li>
@@ -105,7 +100,7 @@ An implementation of an Amazon S3 store is expected along with consumers
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="using_zcloud.html" title="Using zcloud"
+          <a href="using_libzcloud.html" title="Using libzcloud"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="libzcloud"
@@ -115,7 +110,7 @@ An implementation of an Amazon S3 store is expected along with consumers
     </div>
     <div class="footer">
       &copy; Copyright 2009-2009, Zmanda, Inc. (www.zmanda.com).
-      Last updated on Jun 14, 2009.
+      Last updated on Sep 30, 2009.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.2.
     </div>
   </body>

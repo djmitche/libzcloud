@@ -73,6 +73,23 @@ the module information, and is generally fatal.</p>
 </table>
 </dd></dl>
 
+<div class="section" id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p>Libzcloud use glib&#8217;s message logging facility, with the domain <tt class="docutils literal"><span class="pre">&quot;ZCLOUD&quot;</span></tt>.
+Glib&#8217;s default handling for log messages is to print them to stdout or stderr,
+so simple applications may wish to silence the logging:</p>
+<div class="highlight-python"><pre>static void
+null_log(const gchar *log_domain G_GNUC_UNUSED,
+     GLogLevelFlags log_level G_GNUC_UNUSED,
+     const gchar *message G_GNUC_UNUSED,
+     gpointer user_data G_GNUC_UNUSED)
+{
+}
+
+/* ... */
+g_log_set_handler(G_LOG_DOMAIN, G_LOG_LEVEL_MASK, null_log, NULL);</pre>
+</div>
+</div>
 </div>
 
 
@@ -81,6 +98,14 @@ the module information, and is generally fatal.</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference" href="">Library Setup</a><ul>
+<li><a class="reference" href="#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+
             <h4>Previous topic</h4>
             <p class="topless"><a href="../using_libzcloud.html" title="previous chapter">Using libzcloud</a></p>
             <h4>Next topic</h4>
@@ -117,7 +142,7 @@ the module information, and is generally fatal.</p>
     </div>
     <div class="footer">
       &copy; Copyright 2009-2009, Zmanda, Inc. (www.zmanda.com).
-      Last updated on Jun 14, 2009.
+      Last updated on Sep 30, 2009.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.2.
     </div>
   </body>
